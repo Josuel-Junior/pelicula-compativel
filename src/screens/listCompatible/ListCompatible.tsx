@@ -1,16 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 
-interface HomeProps {
-  navigation: any;
-}
-
-export default function Home({ navigation }: HomeProps) {
-  const handleClcik = () => {
-    navigation.navigate("listCompatible", { name: "test" });
-  };
+export default function ListCompatible({ route }: any) {
   return (
     <View style={styles.container}>
-      <Text onPress={handleClcik}>Home</Text>
+      <Text>ListCompatible{route?.params.name}</Text>
     </View>
   );
 }
