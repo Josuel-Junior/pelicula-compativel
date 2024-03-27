@@ -6,9 +6,9 @@ export default function CarouselSlider() {
   const width = Dimensions.get("window").width;
 
   const images = [
-    require("../assets/carousel1.png"),
-    require("../assets/carousel2.png"),
-    require("../assets/carousel3.png"),
+    require("../../assets/carousel/carousel1.png"),
+    require("../../assets/carousel/carousel2.png"),
+    require("../../assets/carousel/carousel3.png"),
   ];
 
   return (
