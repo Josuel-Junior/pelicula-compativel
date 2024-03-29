@@ -1,14 +1,26 @@
 import { Text, View, TouchableOpacity, Modal, Alert } from "react-native";
 
 import { MaterialIcons } from "@expo/vector-icons";
-import { useEffect, useState } from "react";
-
+import { useContext, useState } from "react";
 import { styles } from "./styles";
 import FilterComponent from "../filter";
-import { brands } from "../../contants";
+import { SelectModelAndBrandContext } from "../../contexts/contextBrandAndModel";
+import { addLogo } from "../../functionsUtils";
 
 export const SelectModel: React.FC = () => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+
+  const { listModel, setSelectModel, selectModel } = useContext(
+    SelectModelAndBrandContext
+  );
+
+  const newList = addLogo(listModel);
+
+  const handleSelectModel = () => {
+    if (newList.length > 0) {
+      setModalVisible(true);
+    }
+  };
 
   return (
     <View>
@@ -22,13 +34,17 @@ export const SelectModel: React.FC = () => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            {/* <FilterComponent setModal={setModalVisible} filter={brands} /> */}
+            <FilterComponent
+              setModal={setModalVisible}
+              filter={newList}
+              setSelect={setSelectModel}
+            />
           </View>
         </View>
       </Modal>
       <TouchableOpacity
         style={styles.buttonTouchableOpacity}
-        onPress={() => setModalVisible(true)}
+        onPress={handleSelectModel}
       >
         <View
           style={{
@@ -52,7 +68,7 @@ export const SelectModel: React.FC = () => {
                 fontWeight: "bold",
               }}
             >
-              Selecione um modelo
+              {selectModel == "" ? "Selecione um modelo" : selectModel}
             </Text>
           </View>
         </View>

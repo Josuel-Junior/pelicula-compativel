@@ -1,22 +1,33 @@
-import { Text, View, TouchableOpacity, Modal, Alert } from "react-native";
-
+import { Text, View, TouchableOpacity, Modal } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import { useCallback, useContext, useEffect, useState } from "react";
-
+import { useContext, useEffect, useState } from "react";
 import { styles } from "./styles";
 import FilterComponent from "../filter";
 import { brands } from "../../contants";
-import { SelectModelAndBrandContext } from "../../contexts";
+import { SelectModelAndBrandContext } from "../../contexts/contextBrandAndModel";
+import { getObeserver } from "../../services/firebaseActionDbCompatible";
+import { IsLoadingContext } from "../../contexts/contextIsLoading";
 
 export const SelectComponent: React.FC = () => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
-  const { setSelectBrand, selectBrand } = useContext(
-    SelectModelAndBrandContext
-  );
+  const {
+    setSelectBrand,
+    selectBrand,
+    setListModel,
+    listModel,
+    setSelectModel,
+  } = useContext(SelectModelAndBrandContext);
 
-  const test = process.env.EXPO_PUBLIC_API_URL;
-  console.log(test);
+  const { setIsLoading } = useContext(IsLoadingContext);
+
+  useEffect(() => {
+    if (selectBrand.length > 0) {
+      setIsLoading(true);
+      getObeserver(selectBrand.toLocaleLowerCase(), setListModel, setIsLoading);
+    }
+    setSelectModel("");
+  }, [selectBrand]);
 
   return (
     <View>
@@ -65,7 +76,7 @@ export const SelectComponent: React.FC = () => {
                 fontWeight: "bold",
               }}
             >
-              {selectBrand == "" ? "Selecione um modelo" : selectBrand}
+              {selectBrand == "" ? "Selecione uma marca" : selectBrand}
             </Text>
           </View>
         </View>

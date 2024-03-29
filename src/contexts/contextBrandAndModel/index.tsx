@@ -1,12 +1,13 @@
 import { createContext, useState } from "react";
+import { DataPhone } from "../../interfaces";
 
 interface ISelectModelAndBrand {
   selectModel: string;
   setSelectModel: React.Dispatch<React.SetStateAction<string>>;
   selectBrand: string;
   setSelectBrand: React.Dispatch<React.SetStateAction<string>>;
-  listModel: string;
-  setListModel: React.Dispatch<React.SetStateAction<string>>;
+  listModel: DataPhone[];
+  setListModel: React.Dispatch<React.SetStateAction<DataPhone[]>>;
 }
 
 const SelectModelAndBrandContext = createContext<ISelectModelAndBrand>(
@@ -20,7 +21,8 @@ const SelectModelAndBrandProvider = ({
 }) => {
   const [selectModel, setSelectModel] = useState("");
   const [selectBrand, setSelectBrand] = useState("");
-  const [listModel, setListModel] = useState("");
+  const [listModel, setListModel] = useState<DataPhone[]>([]);
+
   return (
     <SelectModelAndBrandContext.Provider
       value={{

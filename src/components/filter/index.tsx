@@ -9,16 +9,11 @@ import {
 } from "react-native";
 import { styles, stylesItem } from "./styles";
 import { MaterialIcons } from "@expo/vector-icons";
-
-interface IPropsListItem {
-  id: number;
-  brandOrModel: string;
-  logo?: any;
-}
+import { DataPhone } from "../../interfaces";
 
 interface IPropsFilter {
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
-  filter: IPropsListItem[];
+  filter: DataPhone[];
   setSelect: React.Dispatch<React.SetStateAction<string>>;
 }
 
@@ -28,7 +23,7 @@ export const FilterComponent: React.FC<IPropsFilter> = ({
   setSelect,
 }) => {
   const [searchText, setSearchText] = useState<string>("");
-  const [list, setList] = useState<IPropsListItem[]>([]);
+  const [list, setList] = useState<DataPhone[]>([]);
 
   const handleSelect = (select: string) => {
     setSelect(select);
