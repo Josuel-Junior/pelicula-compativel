@@ -10,91 +10,37 @@ import {
 import { styles, stylesItem } from "./styles";
 import { MaterialIcons } from "@expo/vector-icons";
 
-const results = [
-  {
-    id: 1,
-    brandOrModel: "Samsung",
-    logo: require("../../assets/icons/motorola.png"),
-  },
-  {
-    id: 2,
-    brandOrModel: "Samsung",
-    logo: require("../../assets/icons/motorola.png"),
-  },
-  {
-    id: 3,
-    brandOrModel: "Samsung",
-    logo: require("../../assets/icons/motorola.png"),
-  },
-  {
-    id: 4,
-    brandOrModel: "Motorola",
-    logo: require("../../assets/icons/motorola.png"),
-  },
-  {
-    id: 5,
-    brandOrModel: "Apple",
-    logo: require("../../assets/icons/motorola.png"),
-  },
-];
-//   {
-//     id: 1,
-//     name: "Beatriz Farias",
-//     email: "bia.farias@gmail.com",
-//     avatar: "https://i.pravatar.cc/150?img=31",
-//   },
-//   {
-//     id: 2,
-//     name: "Julia Santos",
-//     email: "jujusantos123@hotmail.com",
-//     avatar: "https://i.pravatar.cc/150?img=32",
-//   },
-//   {
-//     id: 3,
-//     name: "Pedro Mendonça",
-//     email: "eu@pedro.com",
-//     avatar: "https://i.pravatar.cc/150?img=33",
-//   },
-//   {
-//     id: 4,
-//     name: "Julia Shinoda",
-//     email: "julia.shinoda@japao.com",
-//     avatar: "https://i.pravatar.cc/150?img=34",
-//   },
-//   {
-//     id: 5,
-//     name: "Andrezza Shinoda",
-//     email: "andrezza99@hotmail.com",
-//     avatar: "https://i.pravatar.cc/150?img=35",
-//   },
-//   {
-//     id: 6,
-//     name: "Sara Maria",
-//     email: "saramaria@gmail.com",
-//     avatar: "https://i.pravatar.cc/150?img=36",
-//   },
-// ];
-
 interface IPropsListItem {
   id: number;
   brandOrModel: string;
-  logo: any;
+  logo?: any;
 }
 
 interface IPropsFilter {
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
+  filter: IPropsListItem[];
+  setSelect: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const FilterComponent: React.FC<IPropsFilter> = ({ setModal }) => {
+export const FilterComponent: React.FC<IPropsFilter> = ({
+  setModal,
+  filter,
+  setSelect,
+}) => {
   const [searchText, setSearchText] = useState<string>("");
   const [list, setList] = useState<IPropsListItem[]>([]);
 
+  const handleSelect = (select: string) => {
+    setSelect(select);
+    setModal(false);
+  };
+
   useEffect(() => {
     if (searchText === "") {
-      setList(results);
+      setList(filter);
     } else {
       setList(
-        results.filter((item) =>
+        filter.filter((item) =>
           item.brandOrModel.toLowerCase().includes(searchText.toLowerCase())
         )
       );
@@ -103,6 +49,14 @@ export const FilterComponent: React.FC<IPropsFilter> = ({ setModal }) => {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity onPress={(prev) => setModal(!prev)}>
+        <MaterialIcons
+          name="arrow-back"
+          size={25}
+          color="#000"
+          style={{ left: 15, marginVertical: 5 }}
+        />
+      </TouchableOpacity>
       <View style={styles.searchArea}>
         <TextInput
           style={styles.input}
@@ -125,7 +79,7 @@ export const FilterComponent: React.FC<IPropsFilter> = ({ setModal }) => {
         renderItem={({ item }) => (
           <TouchableOpacity
             style={stylesItem.itemContainer}
-            onPress={(prev) => setModal(!prev)}
+            onPress={() => handleSelect(item.brandOrModel)}
           >
             <Image source={item?.logo} style={stylesItem.itemLogo} />
             <View>

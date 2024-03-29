@@ -46,10 +46,10 @@ export const stylesItem = StyleSheet.create({
     borderRadius: 5,
   },
   itemLogo: {
-    width: 50,
-    height: 50,
+    width: 30,
+    height: 30,
     position: "absolute",
-    left: 10,
+    left: 15,
   },
   text: {
     fontSize: 22,

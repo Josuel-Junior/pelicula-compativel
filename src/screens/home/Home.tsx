@@ -19,7 +19,7 @@ export default function Home({ navigation }: HomeProps) {
       </View>
       <View style={styles.contentSelect}>
         <SelectComponent />
-        <SelectComponent />
+        {/* <SelectComponent /> */}
       </View>
     </View>
   );

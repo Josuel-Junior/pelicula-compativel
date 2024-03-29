@@ -1,22 +1,14 @@
 import { Text, View, TouchableOpacity, Modal, Alert } from "react-native";
 
 import { MaterialIcons } from "@expo/vector-icons";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { styles } from "./styles";
 import FilterComponent from "../filter";
 import { brands } from "../../contants";
-import { SelectModelAndBrandContext } from "../../contexts";
 
-export const SelectComponent: React.FC = () => {
+export const SelectModel: React.FC = () => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
-
-  const { setSelectBrand, selectBrand } = useContext(
-    SelectModelAndBrandContext
-  );
-
-  const test = process.env.EXPO_PUBLIC_API_URL;
-  console.log(test);
 
   return (
     <View>
@@ -30,11 +22,7 @@ export const SelectComponent: React.FC = () => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <FilterComponent
-              setModal={setModalVisible}
-              filter={brands}
-              setSelect={setSelectBrand}
-            />
+            {/* <FilterComponent setModal={setModalVisible} filter={brands} /> */}
           </View>
         </View>
       </Modal>
@@ -56,7 +44,6 @@ export const SelectComponent: React.FC = () => {
             style={{ position: "absolute", left: 0 }}
           />
           <View style={{ width: "85%" }}>
-            {}
             <Text
               style={{
                 color: "#fff",
@@ -65,7 +52,7 @@ export const SelectComponent: React.FC = () => {
                 fontWeight: "bold",
               }}
             >
-              {selectBrand == "" ? "Selecione um modelo" : selectBrand}
+              Selecione um modelo
             </Text>
           </View>
         </View>
