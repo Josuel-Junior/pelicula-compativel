@@ -3,7 +3,8 @@ import { StyleSheet, Text, View } from "react-native";
 export default function ListCompatible({ route }: any) {
   return (
     <View style={styles.container}>
-      <Text>ListCompatible{route?.params.name}</Text>
+      <Text>ListCompatible{route?.params.brand}</Text>
+      <Text>ListCompatible{route?.params.model}</Text>
     </View>
   );
 }

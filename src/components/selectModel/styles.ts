@@ -33,4 +33,8 @@ export const styles = StyleSheet.create({
     shadowRadius: 5,
     borderRadius: 5,
   },
+  error: {
+    borderColor: colors.error,
+    borderWidth: 2,
+  },
 });

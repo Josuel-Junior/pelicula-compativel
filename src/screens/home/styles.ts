@@ -30,4 +30,18 @@ export const styles = StyleSheet.create({
     width: "90%",
     justifyContent: "center",
   },
+  buttonTouchableOpacity: {
+    flexDirection: "row",
+    marginBottom: 25,
+    paddingHorizontal: 10,
+    paddingVertical: 20,
+    justifyContent: "center",
+    backgroundColor: colors.primary,
+    elevation: 5,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    borderRadius: 5,
+  },
 });

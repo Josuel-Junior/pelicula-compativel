@@ -8,7 +8,12 @@ import { SelectModelAndBrandContext } from "../../contexts/contextBrandAndModel"
 import { getObeserver } from "../../services/firebaseActionDbCompatible";
 import { IsLoadingContext } from "../../contexts/contextIsLoading";
 
-export const SelectComponent: React.FC = () => {
+interface IProps {
+  setError: React.Dispatch<React.SetStateAction<boolean>>;
+  error: boolean;
+}
+
+export const SelectComponent: React.FC<IProps> = ({ error, setError }) => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
   const {
@@ -24,6 +29,7 @@ export const SelectComponent: React.FC = () => {
   useEffect(() => {
     if (selectBrand.length > 0) {
       setIsLoading(true);
+      setError(false);
       getObeserver(selectBrand.toLocaleLowerCase(), setListModel, setIsLoading);
     }
     setSelectModel("");
@@ -50,7 +56,7 @@ export const SelectComponent: React.FC = () => {
         </View>
       </Modal>
       <TouchableOpacity
-        style={styles.buttonTouchableOpacity}
+        style={[styles.buttonTouchableOpacity, error && styles.error]}
         onPress={() => setModalVisible(true)}
       >
         <View
@@ -67,7 +73,6 @@ export const SelectComponent: React.FC = () => {
             style={{ position: "absolute", left: 0 }}
           />
           <View style={{ width: "85%" }}>
-            {}
             <Text
               style={{
                 color: "#fff",

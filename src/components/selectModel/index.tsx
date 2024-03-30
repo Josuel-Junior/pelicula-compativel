@@ -7,7 +7,12 @@ import FilterComponent from "../filter";
 import { SelectModelAndBrandContext } from "../../contexts/contextBrandAndModel";
 import { addLogo } from "../../functionsUtils";
 
-export const SelectModel: React.FC = () => {
+interface IProps {
+  setError: React.Dispatch<React.SetStateAction<boolean>>;
+  error: boolean;
+}
+
+export const SelectModel: React.FC<IProps> = ({ setError, error }) => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
   const { listModel, setSelectModel, selectModel } = useContext(
@@ -17,6 +22,7 @@ export const SelectModel: React.FC = () => {
   const newList = addLogo(listModel);
 
   const handleSelectModel = () => {
+    setError(false);
     if (newList.length > 0) {
       setModalVisible(true);
     }
@@ -43,7 +49,7 @@ export const SelectModel: React.FC = () => {
         </View>
       </Modal>
       <TouchableOpacity
-        style={styles.buttonTouchableOpacity}
+        style={[styles.buttonTouchableOpacity, error && styles.error]}
         onPress={handleSelectModel}
       >
         <View
