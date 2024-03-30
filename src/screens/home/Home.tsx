@@ -9,11 +9,16 @@ import { SelectModelAndBrandContext } from "../../contexts/contextBrandAndModel"
 import { useContext, useState } from "react";
 import { IsLoadingContext } from "../../contexts/contextIsLoading";
 import { MaterialIcons } from "@expo/vector-icons";
+import { Splash } from "../splash/splash";
 interface HomeProps {
   navigation: any;
 }
 
 export default function Home({ navigation }: HomeProps) {
+  // const [splashComplete, setSplashComplete] = useState<boolean>(false);
+
+  // return <Splash onComplete={setSplashComplete} />;
+
   const { isLoading } = useContext(IsLoadingContext);
   const { selectBrand, selectModel } = useContext(SelectModelAndBrandContext);
 
