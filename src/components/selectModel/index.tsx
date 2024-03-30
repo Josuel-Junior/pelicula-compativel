@@ -1,6 +1,6 @@
 import { Text, View, TouchableOpacity, Modal, Alert } from "react-native";
 
-import { MaterialIcons } from "@expo/vector-icons";
+import { SimpleLineIcons } from "@expo/vector-icons";
 import { useContext, useState } from "react";
 import { styles } from "./styles";
 import FilterComponent from "../filter";
@@ -59,8 +59,8 @@ export const SelectModel: React.FC<IProps> = ({ setError, error }) => {
             alignItems: "center",
           }}
         >
-          <MaterialIcons
-            name="smartphone"
+          <SimpleLineIcons
+            name="screen-smartphone"
             size={25}
             color="#fff"
             style={{ position: "absolute", left: 0 }}

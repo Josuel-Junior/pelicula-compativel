@@ -13,16 +13,11 @@ interface IProps {
   error: boolean;
 }
 
-export const SelectComponent: React.FC<IProps> = ({ error, setError }) => {
+export const SelectBrand: React.FC<IProps> = ({ error, setError }) => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
-  const {
-    setSelectBrand,
-    selectBrand,
-    setListModel,
-    listModel,
-    setSelectModel,
-  } = useContext(SelectModelAndBrandContext);
+  const { setSelectBrand, selectBrand, setListModel, setSelectModel } =
+    useContext(SelectModelAndBrandContext);
 
   const { setIsLoading } = useContext(IsLoadingContext);
 

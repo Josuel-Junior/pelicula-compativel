@@ -1,6 +1,6 @@
 import { View, StatusBar, Text, TouchableOpacity } from "react-native";
 import CarouselSlider from "../../components/carousel";
-import { SelectComponent } from "../../components/select";
+import { SelectBrand } from "../../components/selectBrand";
 import { styles } from "./styles";
 import { colors } from "../../styles/colors";
 import { SelectModel } from "../../components/selectModel";
@@ -30,12 +30,11 @@ export default function Home({ navigation }: HomeProps) {
       return;
     }
     navigation.navigate("listCompatible", {
-      brand: selectBrand,
-      model: selectModel,
+      brand: selectBrand.toLocaleLowerCase(),
+      model: selectModel.toLocaleLowerCase(),
     });
   };
 
-  console.log(typeof selectBrand);
   return (
     <View style={styles.container}>
       {isLoading && <Loading />}
@@ -45,7 +44,7 @@ export default function Home({ navigation }: HomeProps) {
         <CarouselSlider />
       </View>
       <View style={styles.contentSelect}>
-        <SelectComponent error={errorBrand} setError={setErrorBrand} />
+        <SelectBrand error={errorBrand} setError={setErrorBrand} />
         <SelectModel error={errorModel} setError={setErrorModel} />
         <View>
           <TouchableOpacity
