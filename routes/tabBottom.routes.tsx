@@ -1,7 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome, FontAwesome6, MaterialIcons } from "@expo/vector-icons";
 import Home from "../src/screens/home/Home";
-import About from "../src/screens/about/About";
 import SuportUs from "../src/screens/suportUs";
 
 const Tab = createBottomTabNavigator();
@@ -17,16 +16,6 @@ export default function () {
             <FontAwesome name="home" color={color} size={size} />
           ),
           tabBarLabel: "Início",
-        }}
-      />
-      <Tab.Screen
-        name="about"
-        component={About}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="group" color={color} size={size} />
-          ),
-          tabBarLabel: "Sobre",
         }}
       />
       <Tab.Screen
