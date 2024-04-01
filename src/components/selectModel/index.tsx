@@ -1,4 +1,11 @@
-import { Text, View, TouchableOpacity, Modal, Alert } from "react-native";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Modal,
+  Alert,
+  ToastAndroid,
+} from "react-native";
 
 import { SimpleLineIcons } from "@expo/vector-icons";
 import { useContext, useState } from "react";
@@ -10,9 +17,14 @@ import { addLogo } from "../../functionsUtils";
 interface IProps {
   setError: React.Dispatch<React.SetStateAction<boolean>>;
   error: boolean;
+  isConnected: boolean | null;
 }
 
-export const SelectModel: React.FC<IProps> = ({ setError, error }) => {
+export const SelectModel: React.FC<IProps> = ({
+  setError,
+  error,
+  isConnected,
+}) => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
   const { listModel, setSelectModel, selectModel } = useContext(
@@ -24,7 +36,17 @@ export const SelectModel: React.FC<IProps> = ({ setError, error }) => {
   const handleSelectModel = () => {
     setError(false);
     if (newList.length > 0) {
-      setModalVisible(true);
+      if (isConnected != false) {
+        setModalVisible(true);
+      } else {
+        ToastAndroid.showWithGravityAndOffset(
+          "verifique sua conexão de rede",
+          ToastAndroid.LONG,
+          ToastAndroid.BOTTOM,
+          25,
+          50
+        );
+      }
     }
   };
 

@@ -6,18 +6,26 @@ import { colors } from "../../styles/colors";
 import { SelectModel } from "../../components/selectModel";
 import Loading from "../../components/loading";
 import { SelectModelAndBrandContext } from "../../contexts/contextBrandAndModel";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IsLoadingContext } from "../../contexts/contextIsLoading";
 import { MaterialIcons } from "@expo/vector-icons";
-import { Splash } from "../splash/splash";
+import { useNetInfo } from "@react-native-community/netinfo";
+
 interface HomeProps {
   navigation: any;
 }
 
 export default function Home({ navigation }: HomeProps) {
-  // const [splashComplete, setSplashComplete] = useState<boolean>(false);
+  const netInfo = useNetInfo();
 
-  // return <Splash onComplete={setSplashComplete} />;
+  const [isConnected, setIsConnected] = useState<boolean>(false);
+  useEffect(() => {
+    if (netInfo.isConnected) {
+      setIsConnected(true);
+    } else {
+      setIsConnected(false);
+    }
+  }, [netInfo]);
 
   const { isLoading } = useContext(IsLoadingContext);
   const { selectBrand, selectModel } = useContext(SelectModelAndBrandContext);
@@ -48,9 +56,18 @@ export default function Home({ navigation }: HomeProps) {
       <View style={styles.carousel}>
         <CarouselSlider />
       </View>
+
       <View style={styles.contentSelect}>
-        <SelectBrand error={errorBrand} setError={setErrorBrand} />
-        <SelectModel error={errorModel} setError={setErrorModel} />
+        <SelectBrand
+          error={errorBrand}
+          setError={setErrorBrand}
+          isConnected={isConnected}
+        />
+        <SelectModel
+          error={errorModel}
+          setError={setErrorModel}
+          isConnected={isConnected}
+        />
         <View>
           <TouchableOpacity
             style={styles.buttonTouchableOpacity}

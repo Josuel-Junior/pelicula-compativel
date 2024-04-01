@@ -1,4 +1,10 @@
-import { Text, View, TouchableOpacity, Modal } from "react-native";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Modal,
+  ToastAndroid,
+} from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useContext, useEffect, useState } from "react";
 import { styles } from "./styles";
@@ -7,19 +13,39 @@ import { brands } from "../../contants";
 import { SelectModelAndBrandContext } from "../../contexts/contextBrandAndModel";
 import { getObeserver } from "../../services/firebaseActionDbCompatible";
 import { IsLoadingContext } from "../../contexts/contextIsLoading";
+import { useNetInfo } from "@react-native-community/netinfo";
 
 interface IProps {
   setError: React.Dispatch<React.SetStateAction<boolean>>;
   error: boolean;
+  isConnected: boolean | null;
 }
 
-export const SelectBrand: React.FC<IProps> = ({ error, setError }) => {
+export const SelectBrand: React.FC<IProps> = ({
+  error,
+  setError,
+  isConnected,
+}) => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
   const { setSelectBrand, selectBrand, setListModel, setSelectModel } =
     useContext(SelectModelAndBrandContext);
 
   const { setIsLoading } = useContext(IsLoadingContext);
+
+  const handleOpenModal = () => {
+    if (isConnected != false) {
+      setModalVisible(true);
+    } else {
+      ToastAndroid.showWithGravityAndOffset(
+        "verifique sua conexão de rede",
+        ToastAndroid.LONG,
+        ToastAndroid.BOTTOM,
+        25,
+        50
+      );
+    }
+  };
 
   useEffect(() => {
     if (selectBrand.length > 0) {
@@ -52,7 +78,7 @@ export const SelectBrand: React.FC<IProps> = ({ error, setError }) => {
       </Modal>
       <TouchableOpacity
         style={[styles.buttonTouchableOpacity, error && styles.error]}
-        onPress={() => setModalVisible(true)}
+        onPress={handleOpenModal}
       >
         <View
           style={{
