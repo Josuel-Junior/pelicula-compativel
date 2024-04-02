@@ -27,15 +27,17 @@ export default function SuportUs() {
           </Text>
         </Animated.View>
         {showData && (
-          <Animated.View entering={FadeInLeft.damping(30).mass(5)}>
-            <Text style={styles.subText}>
-              Nome: Joseul Junior Fonseca Carneiro
-            </Text>
-            <Text style={styles.subText}>Banco: Nubank</Text>
-            <Text style={styles.subText}>
-              Chave Aleatória: 7fb830d7-07ee-4bdf-b41b-01af333f879b
-            </Text>
-          </Animated.View>
+          <View style={styles.supportUs}>
+            <Animated.View entering={FadeInLeft.damping(30).mass(5)}>
+              <Text style={styles.subText}>
+                Nome: Joseul Junior Fonseca Carneiro
+              </Text>
+              <Text style={styles.subText}>Banco: Nubank</Text>
+              <Text style={styles.subText}>
+                Chave Aleatória: 7fb830d7-07ee-4bdf-b41b-01af333f879b
+              </Text>
+            </Animated.View>
+          </View>
         )}
       </View>
       <View style={styles.contentMain}>

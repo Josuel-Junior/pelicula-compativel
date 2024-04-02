@@ -33,7 +33,9 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-
+  supportUs: {
+    width: "90%",
+  },
   textCopy: {
     marginTop: 20,
     backgroundColor: colors.primary,

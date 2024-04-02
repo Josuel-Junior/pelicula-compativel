@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome, FontAwesome6, MaterialIcons } from "@expo/vector-icons";
 import Home from "../src/screens/home/Home";
-import SuportUs from "../src/screens/suportUs";
+import SuportUs from "../src/screens/supportUs";
 
 const Tab = createBottomTabNavigator();
 
