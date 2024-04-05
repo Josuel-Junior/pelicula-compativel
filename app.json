@@ -2,7 +2,7 @@
   "expo": {
     "name": "pelicula-compativel",
     "slug": "pelicula-compativel",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -20,11 +20,18 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "backgroundColor": "#ffffff",
+        "versionCode": 2
+      },
+      "package": "com.josueljfc.peliculacompativel"
     },
     "web": {
       "favicon": "./assets/logo.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "103d7cfe-28bb-4372-b15a-84c76a850c77"
+      }
     }
   }
 }

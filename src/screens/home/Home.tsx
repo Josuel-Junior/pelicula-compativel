@@ -9,23 +9,28 @@ import { SelectModelAndBrandContext } from "../../contexts/contextBrandAndModel"
 import { useContext, useEffect, useState } from "react";
 import { IsLoadingContext } from "../../contexts/contextIsLoading";
 import { MaterialIcons } from "@expo/vector-icons";
-import { useNetInfo } from "@react-native-community/netinfo";
+import NetInfo from "@react-native-community/netinfo";
 
 interface HomeProps {
   navigation: any;
 }
 
 export default function Home({ navigation }: HomeProps) {
-  const netInfo = useNetInfo();
+  const [isConnected, setIsConnected] = useState<boolean | null>(false);
 
-  const [isConnected, setIsConnected] = useState<boolean>(false);
   useEffect(() => {
-    if (netInfo.isConnected) {
-      setIsConnected(true);
-    } else {
-      setIsConnected(false);
-    }
-  }, [netInfo]);
+    const unsubscribe = NetInfo.addEventListener((state) => {
+      if (state.isInternetReachable) {
+        setIsConnected(true);
+      } else {
+        setIsConnected(false);
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   const { isLoading } = useContext(IsLoadingContext);
   const { selectBrand, selectModel } = useContext(SelectModelAndBrandContext);
