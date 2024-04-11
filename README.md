@@ -21,6 +21,7 @@ Basta inserir a marca e modelo do aparelho, e uma lista de modelos compatíveis 
 ## Layout do Painel de Cadastro
 
 <div style="display: flex;">
+  <img src="https://www.datocms-assets.com/115877/1712872375-login.png" width="">
   <img src="https://www.datocms-assets.com/115877/1712871133-inserir-um-titulo.png" width="">
 </div>
 
