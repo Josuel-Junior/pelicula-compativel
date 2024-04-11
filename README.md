@@ -26,10 +26,18 @@ Basta inserir a marca e modelo do aparelho, e uma lista de modelos compatíveis 
 
 # Tecnologias e bibliotecas utilizadas
 
+## Aplicativo
 - React Native
 - Expo CLI
 - Typescript
 - Firebase
+- 
+## Painel de cadastro
+- Next.JS
+- Typescript
+- Material-UI
+- Firebase
+- Vercel
 
 # Autor
 
