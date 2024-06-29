@@ -1,15 +1,15 @@
 {
   "expo": {
-    "name": "pelicula-compativel",
-    "slug": "pelicula-compativel",
-    "version": "1.0.2",
+    "name": "Película Compativel",
+    "slug": "pelicula-compativelv1",
+    "version": "1.0.4",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "cover",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#296FCD"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -20,17 +20,18 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
-        "backgroundColor": "#ffffff",
-        "versionCode": 2
+        "backgroundColor": "#296FCD",
+        "versionCode": 6
       },
-      "package": "com.josueljfc.peliculacompativel"
+      "package": "com.josueljfc.peliculacompativelv1",
+      "versionCode": 17
     },
     "web": {
       "favicon": "./assets/logo.png"
     },
     "extra": {
       "eas": {
-        "projectId": "103d7cfe-28bb-4372-b15a-84c76a850c77"
+        "projectId": "3c8c7a6d-0bcf-4e0d-954f-a7b84eb7880b"
       }
     }
   }

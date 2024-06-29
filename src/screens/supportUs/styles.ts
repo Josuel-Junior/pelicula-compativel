@@ -23,13 +23,14 @@ export const styles = StyleSheet.create({
     color: colors.secondary,
   },
   subText: {
-    marginTop: 20,
+    marginVertical: 10,
     fontWeight: "bold",
     fontSize: 14,
     color: colors.secondary,
   },
   contentMain: {
     flex: 1,
+    width: 250,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -43,5 +44,15 @@ export const styles = StyleSheet.create({
     paddingVertical: 15,
     color: colors.secondary,
     borderRadius: 15,
+    textAlign: "center",
+  },
+  privacypolicy: {
+    marginTop: 20,
+    backgroundColor: "#f50057",
+    paddingHorizontal: 35,
+    paddingVertical: 15,
+    color: colors.secondary,
+    borderRadius: 15,
+    textAlign: "center",
   },
 });

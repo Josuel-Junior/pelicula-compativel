@@ -13,7 +13,6 @@ import { brands } from "../../contants";
 import { SelectModelAndBrandContext } from "../../contexts/contextBrandAndModel";
 import { getObeserver } from "../../services/firebaseActionDbCompatible";
 import { IsLoadingContext } from "../../contexts/contextIsLoading";
-import { useNetInfo } from "@react-native-community/netinfo";
 
 interface IProps {
   setError: React.Dispatch<React.SetStateAction<boolean>>;

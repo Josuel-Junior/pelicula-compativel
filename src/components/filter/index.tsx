@@ -44,12 +44,18 @@ export const FilterComponent: React.FC<IPropsFilter> = ({
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={(prev) => setModal(!prev)}>
+      <TouchableOpacity
+        onPress={(prev) => setModal(!prev)}
+        style={{ height: 49 }}
+      >
         <MaterialIcons
           name="arrow-back"
-          size={25}
+          size={38}
           color="#000"
-          style={{ left: 15, marginVertical: 5 }}
+          style={{
+            left: 15,
+            top: 10,
+          }}
         />
       </TouchableOpacity>
       <View style={styles.searchArea}>
@@ -69,6 +75,7 @@ export const FilterComponent: React.FC<IPropsFilter> = ({
       </View>
 
       <FlatList
+        accessibilityLabel="Lista de marcas de celular"
         data={list}
         style={styles.list}
         renderItem={({ item }) => (
@@ -77,7 +84,7 @@ export const FilterComponent: React.FC<IPropsFilter> = ({
             onPress={() => handleSelect(item.brandOrModel)}
           >
             <Image source={item?.logo} style={stylesItem.itemLogo} />
-            <View>
+            <View accessibilityLabel="Marcas de celular">
               <Text style={stylesItem.text}>{item?.brandOrModel}</Text>
             </View>
           </TouchableOpacity>

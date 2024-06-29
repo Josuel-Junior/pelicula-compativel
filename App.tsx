@@ -6,17 +6,25 @@ import { useState } from "react";
 import { Splash } from "./src/screens/splash/splash";
 import { preventAutoHideAsync } from "expo-splash-screen";
 
-preventAutoHideAsync();
+// preventAutoHideAsync();
 
 export default function App() {
-  const [splashComplete, setSplashComplete] = useState<boolean>(false);
-  return splashComplete ? (
+  return (
     <SelectModelAndBrandProvider>
       <IsLoadingProvider>
         <Routes />
       </IsLoadingProvider>
     </SelectModelAndBrandProvider>
-  ) : (
-    <Splash onComplete={setSplashComplete} />
   );
+
+  // const [splashComplete, setSplashComplete] = useState<boolean>(false);
+  // return splashComplete ? (
+  //   <SelectModelAndBrandProvider>
+  //     <IsLoadingProvider>
+  //       <Routes />
+  //     </IsLoadingProvider>
+  //   </SelectModelAndBrandProvider>
+  // ) : (
+  //   <Splash onComplete={setSplashComplete} />
+  // );
 }

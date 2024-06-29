@@ -5,9 +5,12 @@ import Animated from "react-native-reanimated";
 import { styles } from "./styles";
 import * as Clipboard from "expo-clipboard";
 import { MaterialIcons } from "@expo/vector-icons";
+import OpenExternalLink from "../../openLink";
 
 export default function SuportUs() {
   const [showData, setShowData] = useState<boolean>(false);
+
+  const externalLink = "https://www.jfctecnologia.com/privacypolicy";
 
   const copyToClipboard = async () => {
     setShowData(true);
@@ -42,9 +45,10 @@ export default function SuportUs() {
       </View>
       <View style={styles.contentMain}>
         <MaterialIcons name="pix" size={45} color={"#26A99F"} />
-        <TouchableOpacity onPress={copyToClipboard}>
+        <TouchableOpacity onPress={copyToClipboard} style={{ width: "100%" }}>
           <Text style={styles.textCopy}>Copiar código PIX</Text>
         </TouchableOpacity>
+        {/* <OpenExternalLink url={externalLink} /> */}
       </View>
     </View>
   );

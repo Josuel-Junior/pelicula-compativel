@@ -1,4 +1,10 @@
-import { View, StatusBar, Text, TouchableOpacity } from "react-native";
+import {
+  View,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  ToastAndroid,
+} from "react-native";
 import CarouselSlider from "../../components/carousel";
 import { SelectBrand } from "../../components/selectBrand";
 import { styles } from "./styles";
@@ -45,6 +51,16 @@ export default function Home({ navigation }: HomeProps) {
     }
     if (selectModel.length === 0) {
       setErrorModel(true);
+      return;
+    }
+    if (!isConnected) {
+      ToastAndroid.showWithGravityAndOffset(
+        "verifique sua conexão de redee",
+        ToastAndroid.LONG,
+        ToastAndroid.BOTTOM,
+        25,
+        50
+      );
       return;
     }
     navigation.navigate("listCompatible", {

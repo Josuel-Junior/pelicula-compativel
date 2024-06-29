@@ -1,13 +1,15 @@
 import { FlatList, ToastAndroid, Text, TextInput, View } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { styles } from "./styles";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { readDbCompatible } from "../../services/firebaseActionDbCompatible";
 import { DataPhone } from "../../interfaces";
 import { capitalizeFirstLetter } from "../../functionsUtils";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { colors } from "../../styles/colors";
 import Loading from "../../components/loading";
+import { SelectModelAndBrandContext } from "../../contexts/contextBrandAndModel";
+
 export default function ListCompatible({ route }: any) {
   const [searchText, setSearchText] = useState<string>("");
 
@@ -17,6 +19,10 @@ export default function ListCompatible({ route }: any) {
 
   const [error, setError] = useState<boolean>();
 
+  const { setSelectBrand, setSelectModel } = useContext(
+    SelectModelAndBrandContext
+  );
+
   const { brand, model } = route?.params;
 
   useEffect(() => {
@@ -25,6 +31,8 @@ export default function ListCompatible({ route }: any) {
       try {
         await readDbCompatible(setList, brand, model);
         setError(false);
+        setSelectBrand("");
+        setSelectModel("");
       } catch (error) {
         ToastAndroid.showWithGravityAndOffset(
           "Erro ao buscar dados no servidor",
@@ -71,22 +79,36 @@ export default function ListCompatible({ route }: any) {
           />
         </View>
       </View>
-      <View style={styles.list}>
+      <View
+        style={styles.list}
+        accessibilityLabel="Área de listagem de compatibilidade"
+      >
         {filter.length === 0 && error == false ? (
           <Text style={styles.empty}>Lista vazia</Text>
         ) : (
           <FlatList
             data={filter}
             renderItem={({ item }) => (
-              <View style={styles.itemContainer}>
+              <View
+                style={styles.itemContainer}
+                accessibilityLabel="Lista de compatibilidade"
+              >
                 <MaterialCommunityIcons
                   name="cellphone-check"
                   size={25}
                   color={colors.text}
                   style={{ position: "absolute", right: 40 }}
                 />
-                <View style={styles.itemContainerBox}>
-                  <Text style={styles.text}>
+                <View
+                  style={styles.itemContainerBox}
+                  accessibilityLabel="Modelos compatíveis"
+                >
+                  <Text
+                    style={styles.text}
+                    accessibilityLabel={`Marca: ${capitalizeFirstLetter(
+                      item.brand
+                    )}, Modelo: ${capitalizeFirstLetter(item.brandOrModel)}`}
+                  >
                     {capitalizeFirstLetter(item.brand)}:
                   </Text>
                   <Text style={styles.text}>
